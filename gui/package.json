@@ -1,0 +1,26 @@
+{
+  "name": "molesp",
+  "version": "0.0.1",
+  "description": "Generate and visualize the ESP at the surface of a molecule",
+  "main": "index.js",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview"
+  },
+  "author": "Simon Boothroyd",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/three": "^0.139.0",
+    "generate-license-file": "^1.3.0",
+    "prettier": "^2.6.2",
+    "prettier-plugin-organize-imports": "^2.3.4",
+    "typescript": "^4.6.3",
+    "vite": "^2.9.5"
+  },
+  "dependencies": {
+    "lil-gui": "^0.16.1",
+    "rxjs": "^7.5.5",
+    "three": "^0.139.2"
+  }
+}

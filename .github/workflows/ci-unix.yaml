@@ -1,0 +1,60 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - "main"
+  pull_request:
+    branches:
+      - "main"
+
+jobs:
+  test:
+    name: CI on ${{ matrix.cfg.os }}, Python ${{ matrix.cfg.python-version }}
+    runs-on: ${{ matrix.cfg.os }}
+
+    strategy:
+      fail-fast: false
+      matrix:
+        cfg:
+          - python-version: 3.9
+            os: ubuntu-latest
+          - python-version: 3.9
+            os: macos-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Setup Conda Environment
+        uses: conda-incubator/setup-miniconda@v2.1.1
+        with:
+          python-version: ${{ matrix.cfg.python-version }}
+          environment-file: devtools/conda-envs/test-env.yaml
+
+          activate-environment: test
+          auto-update-conda: true
+          auto-activate-base: false
+          miniforge-version: latest
+          miniforge-variant: Mambaforge
+          use-mamba: true
+
+      - name: Conda Environment Information
+        shell: bash -l {0}
+        run: |
+          conda info
+          conda list
+
+      - name: Build GUI
+        shell: bash -l {0}
+        run: |
+          python setup.py build_gui
+
+      - name: Install Package
+        shell: bash -l {0}
+        run: |
+          pip install .
+
+      - name: Check CLI
+        shell: bash -l {0}
+        run: |
+          molesp --help

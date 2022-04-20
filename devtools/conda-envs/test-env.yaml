@@ -1,0 +1,50 @@
+name: test
+
+channels:
+  - psi4
+  - conda-forge
+  - defaults
+
+dependencies:
+
+    # Core dependencies
+  - python
+  - numpy
+  - scipy
+
+    ## Molecule parsing / manipulation
+  - openff-toolkit-base
+  - rdkit
+
+    ## CLI
+  - click
+  - rich
+
+    ## RESTful API
+  - pydantic
+  - fastapi
+  - uvicorn
+
+    ## QC ESP Generation
+  - psi4
+  - openff-recharge
+
+    # Testing
+  - pytest
+  - pytest-cov
+  - codecov
+
+    # Development
+
+    ## Building the C++ code
+  - cmake
+  - make
+  - pybind11
+
+    ## Building the GUI
+  - nodejs
+
+    ## Linting
+  - isort
+  - black
+  - flake8
